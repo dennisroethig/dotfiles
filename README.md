@@ -2,46 +2,86 @@
 
 Automated Mac setup for Dennis's machines. One script to go from a fresh macOS install to a fully configured development environment.
 
-## Quick start
+## Setting up a fresh Mac
+
+These steps happen **at the new Mac** (the only hands-on part):
+
+### 1. Enable SSH
+
+System Settings → General → Sharing → toggle **Remote Login** on.
+
+### 2. Allow SSH access from the Mac Mini
+
+Open Terminal on the new Mac and run:
 
 ```bash
-# 1. Install Xcode CLI tools (needed for git)
-xcode-select --install
-
-# 2. Clone this repo
-git clone https://github.com/dennisroethig/dotfiles.git ~/Projects/dotfiles
-
-# 3. Run bootstrap
-cd ~/Projects/dotfiles
-./bootstrap.sh --laptop    # MacBook Pro / laptop
-./bootstrap.sh --mini      # Mac Mini Pro / desktop
-./bootstrap.sh --headless  # Headless server (no GUI apps)
+mkdir -p ~/.ssh
 ```
 
-## What it does
+Then get the Mac Mini's public key added. From the **Mac Mini**, run:
 
-1. Installs Xcode CLI tools
-2. Installs Homebrew
-3. Installs packages from `Brewfile` (skips GUI apps with `--headless`)
-4. Installs Oh My Zsh (robbyrussell theme, git plugin)
-5. Symlinks config files (shell, git, SSH, Ghostty, Zed)
+```bash
+ssh-copy-id dennis@<new-mac-ip>
+```
+
+Or if that fails (no password auth), on the **new Mac** run:
+
+```bash
+curl http://192.168.68.101:9999/key.txt >> ~/.ssh/authorized_keys
+```
+
+(Only works if the Mac Mini is serving the key — see below.)
+
+### 3. Install Xcode CLI tools
+
+On the new Mac, run:
+
+```bash
+xcode-select --install
+```
+
+A **GUI dialog will appear** — click "Install" and wait for it to finish. This is the one step that cannot be automated (Apple requires GUI confirmation). Takes a few minutes.
+
+### 4. Everything else is remote
+
+From the **Mac Mini** (or any machine with SSH access), run:
+
+```bash
+ssh dennis@<new-mac-ip>
+git clone https://github.com/dennisroethig/dotfiles.git ~/Projects/dotfiles
+cd ~/Projects/dotfiles
+./bootstrap.sh --laptop    # or --mini, or --headless
+./setup-ssh-access.sh
+```
+
+## What bootstrap does
+
+1. Installs Homebrew (skip if present)
+2. Installs packages from `Brewfile` (skips GUI apps with `--headless`)
+3. Installs Oh My Zsh (robbyrussell theme, git plugin)
+4. Symlinks config files (shell, git, SSH, Ghostty, Zed)
+5. Copies wallpapers and sets the desktop wallpaper
 6. Creates `~/.secrets` template for API keys
 7. Generates an SSH key (ed25519)
-8. Applies macOS system preferences
+8. Applies macOS system preferences (Dock, Finder, keyboard, screenshots)
 9. Prints a post-setup checklist
 
 ## After bootstrap
 
-```bash
-# Distribute SSH key to all other machines (one-time, prompts for passwords)
-./setup-ssh-access.sh
+- Add SSH public key to GitHub
+- Install Tailscale from the App Store (not Homebrew — better macOS integration)
+- Open Zed → install Snazzy extension (`Cmd+Shift+X`)
+- Install Claude Code: `npm install -g @anthropic-ai/claude-code`
+- Fill in `~/.secrets` with API keys
+- Run `./setup-ssh-access.sh` to push SSH key to all other machines
 
-# Then:
-# - Add SSH public key to GitHub
-# - Fill in ~/.secrets with API keys
-# - Open Zed → install Snazzy extension (Cmd+Shift+X)
-# - Install Claude Code: npm install -g @anthropic-ai/claude-code
-```
+## Profiles
+
+| Flag | Use case | GUI apps? |
+|------|----------|-----------|
+| `--laptop` | MacBook Pro / laptop | Yes |
+| `--mini` | Mac Mini Pro / desktop | Yes |
+| `--headless` | Server (LLM host, etc.) | No |
 
 ## Repo structure
 
@@ -50,13 +90,14 @@ configs/
   ghostty/config        # Terminal (Dracula-style bg, padding)
   zed/settings.json     # Editor (Menlo, Snazzy theme)
   git/gitconfig         # Aliases, user info
-  ssh/config            # Host aliases (mbp, old-mini)
+  ssh/config            # Host aliases (mini, mbp, old-mini)
   shell/
     zshrc               # Oh My Zsh, aliases, PATH
     zprofile            # Homebrew PATH, OrbStack
     devrc               # NVM loader
 macos/
   defaults.sh           # macOS system preferences
+wallpapers/             # Desktop wallpapers
 docs/
   llm-server-setup.md   # Ollama / LLM server guide
 Brewfile                # Homebrew packages and casks
@@ -66,7 +107,7 @@ setup-ssh-access.sh     # Push SSH key to all other machines
 
 ## Secrets
 
-API keys and tokens live in `~/.secrets` (not in this repo). The bootstrap script creates a template. Currently tracked secrets:
+API keys and tokens live in `~/.secrets` (not in this repo). Bootstrap creates a template. Currently tracked:
 
 - `INTERVALS_API_KEY` — Intervals.icu API
 - `INTERVALS_ATHLETE_ID` — Intervals.icu athlete ID
