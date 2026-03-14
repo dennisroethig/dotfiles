@@ -1,0 +1,21 @@
+{
+  "project_panel": {
+    "scrollbar": {
+      "show": "auto"
+    },
+    "dock": "right",
+    "entry_spacing": "comfortable",
+    "default_width": 240.0
+  },
+  "buffer_font_family": "Menlo",
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": true
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15.0,
+  "theme": "Snazzy Theme - blurred"
+}

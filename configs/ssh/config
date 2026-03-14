@@ -1,0 +1,11 @@
+Host mbp
+  HostName 192.168.68.102
+  User dennis
+
+Host mbp-ts
+  HostName 100.71.60.121
+  User dennis
+
+Host old-mini
+  HostName 192.168.68.100
+  User dennisroethig

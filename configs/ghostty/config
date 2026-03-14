@@ -1,0 +1,4 @@
+background = #282A36
+window-padding-x = 10
+window-padding-y = 3
+keybind = shift+enter=text:\x1b\r
