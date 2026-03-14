@@ -77,7 +77,22 @@ if [ "$PROFILE" != "--headless" ]; then
   link "$DOTFILES_DIR/configs/zed/settings.json" "$HOME/.config/zed/settings.json"
 fi
 
-# --- 6. Secrets template ---
+# --- 6. Wallpapers ---
+if [ "$PROFILE" != "--headless" ] && [ -d "$DOTFILES_DIR/wallpapers" ]; then
+  WALLPAPER_DIR="$HOME/Documents/Other/Wallpaper"
+  mkdir -p "$WALLPAPER_DIR"
+  cp -n "$DOTFILES_DIR/wallpapers/"* "$WALLPAPER_DIR/" 2>/dev/null || true
+  success "Wallpapers copied to $WALLPAPER_DIR"
+
+  # Set default wallpaper
+  WALLPAPER="$WALLPAPER_DIR/wp11529903-imac-5k-wallpapers.jpg"
+  if [ -f "$WALLPAPER" ]; then
+    osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$WALLPAPER\"" 2>/dev/null || true
+    success "Wallpaper set"
+  fi
+fi
+
+# --- 7. Secrets template ---
 if [ ! -f "$HOME/.secrets" ]; then
   info "Creating ~/.secrets template..."
   cat > "$HOME/.secrets" << 'SECRETS'
