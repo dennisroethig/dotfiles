@@ -3,7 +3,7 @@ Host mini
   User dennis
 
 Host mbp
-  HostName 192.168.68.102
+  HostName 192.168.68.110
   User dennis
 
 Host mbp-ts
