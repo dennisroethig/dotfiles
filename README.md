@@ -40,19 +40,24 @@ On the new Mac, run:
 xcode-select --install
 ```
 
-A **GUI dialog will appear** — click "Install" and wait for it to finish. This is the one step that cannot be automated (Apple requires GUI confirmation). Takes a few minutes.
+A **GUI dialog will appear** — click "Install" and wait for it to finish. This cannot be automated (Apple requires GUI confirmation). Takes a few minutes.
 
-### 4. Everything else is remote
+### 4. Clone and run bootstrap
 
-From the **Mac Mini** (or any machine with SSH access), run:
+Still on the new Mac (Homebrew install requires sudo/TTY — can't run over SSH):
 
 ```bash
-ssh dennis@<new-mac-ip>
 git clone https://github.com/dennisroethig/dotfiles.git ~/Projects/dotfiles
 cd ~/Projects/dotfiles
+git checkout main
 ./bootstrap.sh --laptop    # or --mini, or --headless
-./setup-ssh-access.sh
 ```
+
+**Note:** The repo has an old `master` branch. Always use `main`.
+
+### 5. Everything else is remote
+
+After bootstrap completes, the rest can be done from any machine via SSH.
 
 ## What bootstrap does
 
