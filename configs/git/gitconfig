@@ -1,8 +1,8 @@
 [alias]
-  st = status
-  ci = commit
-  br = branch
-  co = checkout
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
 [user]
-  name = Dennis Roethig
-  email = roethig.dennis@gmail.com
+	name = Dennis Roethig
+	email = roethig.dennis@gmail.com

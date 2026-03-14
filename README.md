@@ -9,7 +9,7 @@ Automated Mac setup for Dennis's machines. One script to go from a fresh macOS i
 xcode-select --install
 
 # 2. Clone this repo
-git clone https://github.com/<user>/dotfiles.git ~/Projects/dotfiles
+git clone https://github.com/dennisroethig/dotfiles.git ~/Projects/dotfiles
 
 # 3. Run bootstrap
 cd ~/Projects/dotfiles

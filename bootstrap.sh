@@ -15,8 +15,10 @@ warn() { printf "\033[1;33m==>\033[0m %s\n" "$1"; }
 if ! xcode-select -p &>/dev/null; then
   info "Installing Xcode Command Line Tools..."
   xcode-select --install
-  echo "Press enter after Xcode CLI tools installation completes."
-  read -r
+  echo "Waiting for Xcode CLI tools installation..."
+  until xcode-select -p &>/dev/null; do
+    sleep 5
+  done
 else
   success "Xcode CLI tools already installed"
 fi
@@ -122,5 +124,5 @@ echo "  [ ] Add SSH public key to GitHub (see above or: cat ~/.ssh/id_ed25519.pu
 echo "  [ ] Fill in ~/.secrets with API keys"
 echo "  [ ] Open Zed → install Snazzy extension (Cmd+Shift+X, search 'snazzy')"
 echo "  [ ] Install Claude Code: npm install -g @anthropic-ai/claude-code"
-echo "  [ ] Clone workspace: git clone git@github.com:<user>/claude.git ~/Projects/claude"
+echo "  [ ] Clone workspace: git clone git@github.com:dennisroethig/claude.git ~/Projects/claude"
 echo ""
