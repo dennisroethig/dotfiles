@@ -92,7 +92,14 @@ if [ "$PROFILE" != "--headless" ] && [ -d "$DOTFILES_DIR/wallpapers" ]; then
   fi
 fi
 
-# --- 7. Secrets template ---
+# --- 7. Raycast settings ---
+if [ "$PROFILE" != "--headless" ] && [ -f "$DOTFILES_DIR/configs/raycast.plist" ]; then
+  info "Importing Raycast settings..."
+  defaults import com.raycast.macos "$DOTFILES_DIR/configs/raycast.plist"
+  success "Raycast settings imported"
+fi
+
+# --- 8. Secrets template ---
 if [ ! -f "$HOME/.secrets" ]; then
   info "Creating ~/.secrets template..."
   cat > "$HOME/.secrets" << 'SECRETS'
