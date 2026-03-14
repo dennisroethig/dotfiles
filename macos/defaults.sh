@@ -30,6 +30,10 @@ if [ "$PROFILE" = "--laptop" ]; then
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 fi
 
+# Disable Spotlight Cmd+Space (Raycast takes over)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>'
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+
 # Restart affected apps
 killall Dock Finder 2>/dev/null || true
 
