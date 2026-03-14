@@ -81,6 +81,26 @@ macOS blocks programmatic permission grants — these must be done manually:
 - **Files & Folders** → allow **Raycast**, **Ghostty**, **Zed** (or approve when prompted on first use)
 - **Bluetooth** → allow **iStat Menus** (if installed)
 
+### Permissions (one command)
+
+```bash
+sudo ./setup-permissions.sh
+```
+
+Grants Accessibility, Files & Folders, Bluetooth for Raycast, Ghostty, iStat Menus.
+
+### Raycast full import
+
+The `.rayconfig` export in `configs/` contains extensions, hotkeys, and window management shortcuts. Import on the new Mac:
+
+```bash
+open ~/Projects/dotfiles/configs/raycast.rayconfig
+```
+
+Raycast will prompt for the export password, then import everything.
+
+**To update the export:** On the source Mac, Cmd+Space → "Export" → Export Settings & Data. Copy the new `.rayconfig` to `configs/raycast.rayconfig` and push.
+
 ### Other manual steps
 
 - Add SSH public key to GitHub (or run `gh ssh-key add ~/.ssh/id_ed25519.pub` from a machine with `gh` auth)
