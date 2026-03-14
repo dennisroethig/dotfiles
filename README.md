@@ -30,12 +30,18 @@ cd ~/Projects/dotfiles
 8. Applies macOS system preferences
 9. Prints a post-setup checklist
 
-## Manual steps after bootstrap
+## After bootstrap
 
-- Add SSH public key to GitHub
-- Fill in `~/.secrets` with API keys
-- Open Zed and install the Snazzy extension (`Cmd+Shift+X`)
-- Install Claude Code: `npm install -g @anthropic-ai/claude-code`
+```bash
+# Distribute SSH key to all other machines (one-time, prompts for passwords)
+./setup-ssh-access.sh
+
+# Then:
+# - Add SSH public key to GitHub
+# - Fill in ~/.secrets with API keys
+# - Open Zed → install Snazzy extension (Cmd+Shift+X)
+# - Install Claude Code: npm install -g @anthropic-ai/claude-code
+```
 
 ## Repo structure
 
@@ -55,6 +61,7 @@ docs/
   llm-server-setup.md   # Ollama / LLM server guide
 Brewfile                # Homebrew packages and casks
 bootstrap.sh            # Main setup script
+setup-ssh-access.sh     # Push SSH key to all other machines
 ```
 
 ## Secrets

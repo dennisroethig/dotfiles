@@ -1,3 +1,7 @@
+Host mini
+  HostName 192.168.68.101
+  User dennis
+
 Host mbp
   HostName 192.168.68.102
   User dennis
