@@ -73,11 +73,21 @@ After bootstrap completes, the rest can be done from any machine via SSH.
 
 ## After bootstrap
 
-- Add SSH public key to GitHub
+### Privacy permissions (System Settings → Privacy & Security)
+
+macOS blocks programmatic permission grants — these must be done manually:
+
+- **Accessibility** → enable **Raycast** (required for Hyper Key and window management)
+- **Files & Folders** → allow **Raycast**, **Ghostty**, **Zed** (or approve when prompted on first use)
+- **Bluetooth** → allow **iStat Menus** (if installed)
+
+### Other manual steps
+
+- Add SSH public key to GitHub (or run `gh ssh-key add ~/.ssh/id_ed25519.pub` from a machine with `gh` auth)
 - Install Tailscale from the App Store (not Homebrew — better macOS integration)
 - Open Zed → install Snazzy extension (`Cmd+Shift+X`)
 - Install Claude Code: `npm install -g @anthropic-ai/claude-code`
-- Fill in `~/.secrets` with API keys
+- Fill in `~/.secrets` with API keys (only if needed on this machine)
 - Run `./setup-ssh-access.sh` to push SSH key to all other machines
 
 ## Profiles
