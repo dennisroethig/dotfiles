@@ -92,11 +92,20 @@ if [ "$PROFILE" != "--headless" ] && [ -d "$DOTFILES_DIR/wallpapers" ]; then
   fi
 fi
 
-# --- 7. Raycast settings ---
-if [ "$PROFILE" != "--headless" ] && [ -f "$DOTFILES_DIR/configs/raycast.plist" ]; then
-  info "Importing Raycast settings..."
-  defaults import com.raycast.macos "$DOTFILES_DIR/configs/raycast.plist"
-  success "Raycast settings imported"
+# --- 7. App and system settings ---
+if [ "$PROFILE" != "--headless" ]; then
+  for plist_pair in \
+    "raycast.plist:com.raycast.macos" \
+    "dock.plist:com.apple.dock" \
+    "windowmanager.plist:com.apple.WindowManager"; do
+    file="${plist_pair%%:*}"
+    domain="${plist_pair##*:}"
+    if [ -f "$DOTFILES_DIR/configs/$file" ]; then
+      defaults import "$domain" "$DOTFILES_DIR/configs/$file"
+      success "Imported $domain settings"
+    fi
+  done
+  killall Dock 2>/dev/null || true
 fi
 
 # --- 8. Secrets template ---
