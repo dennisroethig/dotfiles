@@ -9,8 +9,8 @@
   },
   "buffer_font_family": "Menlo",
   "telemetry": {
-    "diagnostics": true,
-    "metrics": true
+    "diagnostics": false,
+    "metrics": false
   },
   "session": {
     "trust_all_worktrees": true

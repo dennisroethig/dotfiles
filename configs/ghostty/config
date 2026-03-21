@@ -1,4 +1,5 @@
+font-size = 14
 background = #282A36
 window-padding-x = 10
-window-padding-y = 3
+window-padding-y = 5
 keybind = shift+enter=text:\x1b\r

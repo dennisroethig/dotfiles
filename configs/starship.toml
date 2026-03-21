@@ -1,0 +1,59 @@
+# Starship prompt config
+# Docs: https://starship.rs/config/
+
+format = """
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration\
+$line_break\
+$character"""
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+
+[git_branch]
+format = "on [$symbol$branch]($style) "
+style = "bold purple"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold red"
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) in "
+style = "bold yellow"
+
+# Hide language versions unless in a project with that language
+[nodejs]
+detect_extensions = []
+
+[python]
+detect_extensions = []
+
+[rust]
+detect_extensions = []
+
+[golang]
+detect_extensions = []
+
+[java]
+detect_extensions = []
+
+[ruby]
+detect_extensions = []
+
+[package]
+disabled = true

@@ -4,6 +4,7 @@ brew "mosh"
 brew "node"
 brew "nvm"
 brew "socat"
+brew "starship"
 brew "tmux"
 
 # GUI apps (skip with: brew bundle --file=Brewfile --no-cask)
