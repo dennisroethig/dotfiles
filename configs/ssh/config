@@ -14,6 +14,6 @@ Host neo
   HostName 192.168.68.104
   User dennis
 
-Host old-mini
-  HostName 192.168.68.100
-  User dennisroethig
+Host mac-mini
+  HostName 100.81.35.113
+  User dennis
