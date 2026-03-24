@@ -1,5 +1,6 @@
 # CLI tools
 brew "gh"
+brew "go"
 brew "mosh"
 brew "node"
 brew "nvm"
