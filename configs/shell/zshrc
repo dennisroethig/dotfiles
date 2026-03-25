@@ -31,5 +31,8 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# Carapace completions
+source <(carapace _carapace)
+
 # Starship prompt
 eval "$(starship init zsh)"

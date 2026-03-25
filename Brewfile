@@ -6,6 +6,7 @@ brew "node"
 brew "nvm"
 brew "socat"
 brew "btop"
+brew "carapace"
 brew "starship"
 brew "tmux"
 
