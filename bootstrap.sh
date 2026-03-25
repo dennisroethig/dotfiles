@@ -71,10 +71,18 @@ link "$DOTFILES_DIR/configs/shell/zprofile"  "$HOME/.zprofile"
 link "$DOTFILES_DIR/configs/shell/devrc"     "$HOME/.devrc"
 link "$DOTFILES_DIR/configs/git/gitconfig"   "$HOME/.gitconfig"
 link "$DOTFILES_DIR/configs/ssh/config"      "$HOME/.ssh/config"
+link "$DOTFILES_DIR/configs/starship.toml"   "$HOME/.config/starship.toml"
 
 if [ "$PROFILE" != "--headless" ]; then
   link "$DOTFILES_DIR/configs/ghostty/config"  "$HOME/.config/ghostty/config"
   link "$DOTFILES_DIR/configs/zed/settings.json" "$HOME/.config/zed/settings.json"
+fi
+
+# btop themes (copy, not symlink — btop expects files in the directory)
+if [ -d "$DOTFILES_DIR/configs/btop/themes" ]; then
+  mkdir -p "$HOME/.config/btop/themes"
+  cp "$DOTFILES_DIR/configs/btop/themes/"*.theme "$HOME/.config/btop/themes/"
+  success "Copied btop themes"
 fi
 
 # --- 6. Wallpapers ---
