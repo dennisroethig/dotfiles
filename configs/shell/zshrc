@@ -13,6 +13,7 @@ source $ZSH/oh-my-zsh.sh
 alias unlock="security unlock-keychain ~/Library/Keychains/login.keychain-db"
 alias tc="tmux new -As claude"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias claude="claude --enable-auto-mode"
 
 # Dev tools
 source ~/.devrc
