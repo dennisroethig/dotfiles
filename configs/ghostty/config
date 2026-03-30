@@ -1,6 +1,6 @@
 theme = Catppuccin Mocha
-font-family = JetBrains Mono
-font-size = 14
+font-family = JetBrainsMono Nerd Font
+font-size = 13
 window-padding-x = 10
 window-padding-y = 5
 keybind = shift+enter=text:\x1b\r
