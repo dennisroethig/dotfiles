@@ -9,6 +9,8 @@ brew "btop"
 brew "carapace"
 brew "starship"
 brew "tmux"
+brew "sesh"
+brew "zoxide"
 
 # GUI apps (skip with: brew bundle --file=Brewfile --no-cask)
 cask "fastmail"
