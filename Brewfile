@@ -11,6 +11,7 @@ brew "starship"
 brew "tmux"
 brew "sesh"
 brew "zoxide"
+brew "lazygit"
 
 # GUI apps (skip with: brew bundle --file=Brewfile --no-cask)
 cask "fastmail"
