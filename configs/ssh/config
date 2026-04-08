@@ -2,22 +2,18 @@ Host *
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
 
-Host mini
-  HostName 192.168.68.101
-  User dennis
-
-Host mbp
-  HostName 192.168.68.110
-  User dennis
-
-Host mbp-ts
-  HostName 100.71.60.121
-  User dennis
-
-Host neo
-  HostName 192.168.68.104
+Host mac-mini-pro
+  HostName 100.93.59.9
   User dennis
 
 Host mac-mini
   HostName 100.81.35.113
+  User dennis
+
+Host mbp
+  HostName 100.71.60.121
+  User dennis
+
+Host neo
+  HostName 100.77.167.13
   User dennis
