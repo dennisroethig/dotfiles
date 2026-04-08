@@ -37,3 +37,11 @@ Use `[[wikilinks]]` to connect notes. Prefer updating existing notes over creati
 **Don't worry about session logging** — conversations are automatically captured by a hook and curated nightly. Focus on writing things that have clear value as standalone notes.
 
 **Don't write to `journal/`** — that's for Dennis's own reflections.
+
+## Extended Mind is the primary knowledge store
+
+When you learn facts, decisions, configs, how-tos, or anything about tools, systems, or projects — the Extended Mind vault is where it goes. ALWAYS. This is not optional.
+
+Claude Code's built-in memory (`~/.claude/projects/.../memory/`) is fine for behavioral feedback about how Claude should work. But knowledge, references, and project context MUST go to the Extended Mind vault. If in doubt, write to the vault.
+
+**The failure mode to watch for:** writing to Claude Code memory and calling it done. That's not done. The vault is the source of truth.
