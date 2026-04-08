@@ -1,0 +1,26 @@
+{
+  "SessionStart": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo 'CRITICAL REMINDER — Extended Mind Vault:\n\n1. READ NOW: Check ~/.claude/CLAUDE.md for vault instructions. Read memory/active.md for current context.\n\n2. WRITE DURING SESSION: When you learn or change ANYTHING noteworthy — system config, infrastructure, decisions, knowledge, learnings — update the relevant Extended Mind vault note immediately. Not just docs/changelog.md. The vault is the source of truth:\n   - Machine/infra changes → knowledge/machines.md or knowledge/home-network.md\n   - Project updates → projects/\n   - New knowledge, configs, guides → knowledge/\n   - Ideas, explorations → ideas/\n\nThis is a BLOCKING requirement. Do not finish a session without capturing what matters.'",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "Stop": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "/Users/dennis/Projects/claude/scripts/extended-mind-capture.sh",
+          "timeout": 10
+        }
+      ]
+    }
+  ]
+}

@@ -66,6 +66,28 @@ link() {
   success "Linked $dst"
 }
 
+# Claude Code — symlink CLAUDE.md, merge hooks into settings.json
+link "$DOTFILES_DIR/configs/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+if command -v jq &>/dev/null && [ -f "$DOTFILES_DIR/configs/claude/hooks.json" ]; then
+  # Deploy capture script
+  CLAUDE_SCRIPTS="$HOME/Projects/claude/scripts"
+  mkdir -p "$CLAUDE_SCRIPTS"
+  cp "$DOTFILES_DIR/configs/claude/extended-mind-capture.sh" "$CLAUDE_SCRIPTS/extended-mind-capture.sh"
+  chmod +x "$CLAUDE_SCRIPTS/extended-mind-capture.sh"
+  success "Deployed extended-mind-capture.sh"
+
+  CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+  mkdir -p "$HOME/.claude"
+  if [ -f "$CLAUDE_SETTINGS" ]; then
+    jq --slurpfile hooks "$DOTFILES_DIR/configs/claude/hooks.json" '.hooks = $hooks[0]' "$CLAUDE_SETTINGS" > "${CLAUDE_SETTINGS}.tmp" \
+      && mv "${CLAUDE_SETTINGS}.tmp" "$CLAUDE_SETTINGS"
+    success "Merged Claude Code hooks into settings.json"
+  else
+    echo "{\"hooks\": $(cat "$DOTFILES_DIR/configs/claude/hooks.json")}" > "$CLAUDE_SETTINGS"
+    success "Created Claude Code settings.json with hooks"
+  fi
+fi
+
 link "$DOTFILES_DIR/configs/shell/zshrc"    "$HOME/.zshrc"
 link "$DOTFILES_DIR/configs/shell/zprofile"  "$HOME/.zprofile"
 link "$DOTFILES_DIR/configs/shell/devrc"     "$HOME/.devrc"
