@@ -72,6 +72,7 @@ link "$DOTFILES_DIR/configs/shell/devrc"     "$HOME/.devrc"
 link "$DOTFILES_DIR/configs/git/gitconfig"   "$HOME/.gitconfig"
 link "$DOTFILES_DIR/configs/ssh/config"      "$HOME/.ssh/config"
 link "$DOTFILES_DIR/configs/starship.toml"   "$HOME/.config/starship.toml"
+link "$DOTFILES_DIR/configs/tmux/tmux.conf"  "$HOME/.config/tmux/tmux.conf"
 
 if [ "$PROFILE" != "--headless" ]; then
   link "$DOTFILES_DIR/configs/ghostty/config"  "$HOME/.config/ghostty/config"
