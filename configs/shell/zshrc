@@ -36,14 +36,18 @@ export PATH="$HOME/.local/bin:$PATH"
 source <(carapace _carapace)
 
 # Clean up terminal modes a crashed/disconnected TUI (e.g. Claude Code over ssh)
-# may have left behind: disable mouse reporting before each prompt.
+# may have left behind, before each prompt:
+#   - mouse reporting (?1000-?1015)      -> symptom: "35;66;38M" junk on mouse move
+#   - kitty keyboard protocol (CSI =0;1u) -> symptom: "c9;1:3u" junk after each key
+# Claude Code >= 2.1.27x pushes the kitty protocol on the client terminal even
+# over ssh; if the connection drops it never sends the pop (CSI <u).
 autoload -Uz add-zsh-hook
-# Skip inside tmux: tmux manages client-side mouse modes itself for wheel
-# scrolling, and these sequences would pass through and break it.
-_reset_mouse_modes() {
-  [[ -z $TMUX ]] && printf '\e[?1000l\e[?1002l\e[?1003l\e[?1005l\e[?1006l\e[?1015l'
+# Skip inside tmux: tmux manages client-side mouse/keyboard modes itself and
+# these sequences would pass through and break wheel scroll / extended keys.
+_reset_tui_modes() {
+  [[ -z $TMUX ]] && printf '\e[?1000l\e[?1002l\e[?1003l\e[?1005l\e[?1006l\e[?1015l\e[=0;1u'
 }
-add-zsh-hook precmd _reset_mouse_modes
+add-zsh-hook precmd _reset_tui_modes
 
 # Starship prompt
 eval "$(starship init zsh)"
