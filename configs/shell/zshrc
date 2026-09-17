@@ -38,7 +38,11 @@ source <(carapace _carapace)
 # Clean up terminal modes a crashed/disconnected TUI (e.g. Claude Code over ssh)
 # may have left behind: disable mouse reporting before each prompt.
 autoload -Uz add-zsh-hook
-_reset_mouse_modes() { printf '\e[?1000l\e[?1002l\e[?1003l\e[?1005l\e[?1006l\e[?1015l' }
+# Skip inside tmux: tmux manages client-side mouse modes itself for wheel
+# scrolling, and these sequences would pass through and break it.
+_reset_mouse_modes() {
+  [[ -z $TMUX ]] && printf '\e[?1000l\e[?1002l\e[?1003l\e[?1005l\e[?1006l\e[?1015l'
+}
 add-zsh-hook precmd _reset_mouse_modes
 
 # Starship prompt
