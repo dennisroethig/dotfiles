@@ -11,7 +11,7 @@ You have access to a shared knowledge vault — the "Extended Mind" — an Obsid
 ```
 memory/
   active.md              <- Current state of the world. Check this for context.
-  sessions/              <- Daily session summaries (curated by nightly task)
+  sessions/              <- Older daily summaries (the nightly curator is retired)
     raw/                 <- Raw conversation captures (auto-captured by hook)
 projects/                <- One note per project
 knowledge/               <- Stable reference material (configs, tools, guides)
@@ -34,7 +34,11 @@ The vault path contains spaces. **Never use Bash commands** (ls, cat, mkdir, etc
 
 Use `[[wikilinks]]` to connect notes. Prefer updating existing notes over creating new ones.
 
-**Don't worry about session logging** — conversations are automatically captured by a hook and curated nightly. Focus on writing things that have clear value as standalone notes.
+**Keep notes current, not cumulative.** `memory/active.md` and the project notes describe the present state; they are not logs. When you update one, rewrite the section you are touching instead of appending another dated paragraph, remove items that are clearly finished, and keep history only where it earns its place (a short "History" list at the bottom of a project note, or the repo's own changelog). `memory/active.md` stays under about 150 lines: one short entry per project that says where it stands and what is next, then links out (`→ [[projects/x]]`). Nothing tidies these files afterwards. There is no nightly curator any more, so what you leave is what the next session reads. Tidying means moving, not deleting: when an item leaves `memory/active.md`, its outcome gets one dated line in the project note's History list, and decisions with their reasons are never dropped from a project note (compress them, keep the why).
+
+**Finding the past.** When you need to know what happened or why: first the project note's History list, then the repo's changelog or decision log, then the raw transcripts in `memory/sessions/raw/<date>/` (one Markdown file per session, kept indefinitely; search them with grep by keyword or date). The transcripts are the unedited record, so prefer them over a summary when the two disagree.
+
+**Don't worry about session logging** — conversations are captured automatically by a hook into `memory/sessions/raw/` and kept as the unedited record. Nothing summarises them, so anything durable has to be written as a proper note during the session.
 
 **Don't write to `journal/`** — that's for Dennis's own reflections.
 

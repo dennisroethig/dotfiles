@@ -4,7 +4,16 @@ font-size = 13
 font-thicken = true
 window-padding-x = 10
 window-padding-y = 5
-# Pi/tmux-friendly modified Enter keys (Kitty CSI-u encoding): shift+enter = newline, cmd+enter = submit.
+# Left Option acts as Alt, so alt+<key> reaches terminal apps instead of typing a composed character
+# (alt+t opens Pi's trace inspector; Pi's own alt+b / alt+f / alt+d word-motions need it too).
+# Right Option still composes: ü, é, † keep working on that side. Remove this line to go back.
+macos-option-as-alt = left
+
+# Optional modified-Enter encodings (Kitty CSI-u) for Pi: shift+enter = newline, cmd+enter = submit.
+# Since 2026-02-14 Pi submits on plain Enter (mobile/Moshi has no cmd); these are just extras.
 # cmd+enter replaces Ghostty's default toggle_fullscreen; use cmd+ctrl+f for fullscreen instead.
 keybind = shift+enter=text:\x1b[13;2u
 keybind = cmd+enter=text:\x1b[13;9u
+
+cursor-opacity = 0
+custom-shader = ./shaders/cursor_glide.glsl

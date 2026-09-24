@@ -98,6 +98,9 @@ link "$DOTFILES_DIR/configs/tmux/tmux.conf"  "$HOME/.config/tmux/tmux.conf"
 
 if [ "$PROFILE" != "--headless" ]; then
   link "$DOTFILES_DIR/configs/ghostty/config"  "$HOME/.config/ghostty/config"
+  # custom-shader in the config is relative (./shaders/...), so the shaders dir must sit next to it
+  [ -d "$HOME/.config/ghostty/shaders" ] && [ ! -L "$HOME/.config/ghostty/shaders" ] && mv "$HOME/.config/ghostty/shaders" "$HOME/.config/ghostty/shaders.backup"
+  link "$DOTFILES_DIR/configs/ghostty/shaders" "$HOME/.config/ghostty/shaders"
   link "$DOTFILES_DIR/configs/zed/settings.json" "$HOME/.config/zed/settings.json"
 fi
 
