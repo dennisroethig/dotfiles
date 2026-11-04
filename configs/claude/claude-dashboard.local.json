@@ -1,0 +1,9 @@
+{
+  "language": "auto",
+  "plan": "max",
+  "displayMode": "compact",
+  "theme": "default",
+  "cache": {
+    "ttlSeconds": 300
+  }
+}

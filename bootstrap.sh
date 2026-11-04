@@ -66,8 +66,10 @@ link() {
   success "Linked $dst"
 }
 
-# Claude Code — symlink CLAUDE.md, merge hooks into settings.json
+# Claude Code — symlink CLAUDE.md and the status line files, merge hooks + statusLine into settings.json
 link "$DOTFILES_DIR/configs/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+link "$DOTFILES_DIR/configs/claude/statusline.sh" "$HOME/.claude/statusline.sh"
+link "$DOTFILES_DIR/configs/claude/claude-dashboard.local.json" "$HOME/.claude/claude-dashboard.local.json"
 if command -v jq &>/dev/null && [ -f "$DOTFILES_DIR/configs/claude/hooks.json" ]; then
   # Deploy capture script
   CLAUDE_SCRIPTS="$HOME/Projects/claude/scripts"
@@ -79,12 +81,14 @@ if command -v jq &>/dev/null && [ -f "$DOTFILES_DIR/configs/claude/hooks.json" ]
   CLAUDE_SETTINGS="$HOME/.claude/settings.json"
   mkdir -p "$HOME/.claude"
   if [ -f "$CLAUDE_SETTINGS" ]; then
-    jq --slurpfile hooks "$DOTFILES_DIR/configs/claude/hooks.json" '.hooks = $hooks[0]' "$CLAUDE_SETTINGS" > "${CLAUDE_SETTINGS}.tmp" \
+    jq --slurpfile hooks "$DOTFILES_DIR/configs/claude/hooks.json" \
+      '.hooks = $hooks[0] | .statusLine = {type: "command", command: "~/.claude/statusline.sh"}' \
+      "$CLAUDE_SETTINGS" > "${CLAUDE_SETTINGS}.tmp" \
       && mv "${CLAUDE_SETTINGS}.tmp" "$CLAUDE_SETTINGS"
-    success "Merged Claude Code hooks into settings.json"
+    success "Merged Claude Code hooks and statusLine into settings.json"
   else
-    echo "{\"hooks\": $(cat "$DOTFILES_DIR/configs/claude/hooks.json")}" > "$CLAUDE_SETTINGS"
-    success "Created Claude Code settings.json with hooks"
+    echo "{\"hooks\": $(cat "$DOTFILES_DIR/configs/claude/hooks.json"), \"statusLine\": {\"type\": \"command\", \"command\": \"~/.claude/statusline.sh\"}}" > "$CLAUDE_SETTINGS"
+    success "Created Claude Code settings.json with hooks and statusLine"
   fi
 fi
 
