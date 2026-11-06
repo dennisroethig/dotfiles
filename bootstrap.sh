@@ -134,6 +134,8 @@ fi
 if [ "$PROFILE" != "--headless" ]; then
   for plist_pair in \
     "raycast.plist:com.raycast.macos" \
+    "rectangle.plist:com.knollsoft.Rectangle" \
+    "hyperkey.plist:com.knollsoft.Hyperkey" \
     "dock.plist:com.apple.dock" \
     "windowmanager.plist:com.apple.WindowManager"; do
     file="${plist_pair%%:*}"
@@ -193,6 +195,7 @@ echo "  [ ] Add SSH public key to GitHub (see above or: cat ~/.ssh/id_ed25519.pu
 echo "  [ ] Run ./setup-ssh-access.sh to push SSH key to all other machines"
 echo "  [ ] Fill in ~/.secrets with API keys"
 echo "  [ ] Install Tailscale from the App Store (not Homebrew — better macOS integration)"
+echo "  [ ] Rectangle + Hyperkey: grant Accessibility, turn on launch at login, check the Caps Lock + c size suits this screen (fixed pixels)"
 echo "  [ ] Open Zed → install Snazzy extension (Cmd+Shift+X, search 'snazzy')"
 echo "  [ ] Install Claude Code: npm install -g @anthropic-ai/claude-code"
 echo "  [ ] Clone workspace: git clone git@github.com:dennisroethig/claude.git ~/Projects/claude"
