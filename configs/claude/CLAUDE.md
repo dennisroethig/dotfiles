@@ -10,9 +10,9 @@ You have access to a shared knowledge vault — the "Extended Mind" — an Obsid
 
 ```
 memory/
-  active.md              <- Current state of the world. Check this for context.
-  sessions/              <- Older daily summaries (the nightly curator is retired)
-    raw/                 <- Raw conversation captures (auto-captured by hook)
+  active.md              <- What's live right now. Check this for context.
+  sessions/raw/          <- Conversation captures (by hook), kept one month
+systems/                 <- Current state: machines, Home Assistant, agents and tools
 projects/                <- One note per project
 knowledge/               <- Stable reference material (configs, tools, guides)
 ideas/                   <- Half-baked thoughts, future explorations
@@ -28,17 +28,20 @@ The vault path contains spaces. **Never use Bash commands** (ls, cat, mkdir, etc
 **Reading:** When a task would benefit from prior context — past work, project status, ideas, or knowledge — check `memory/active.md` first, then look in the relevant section. Don't read the whole vault; just what's relevant.
 
 **Writing:** When something worth capturing comes up during a session — a decision, an idea, a new piece of knowledge, a project update — write it to the appropriate section:
+- `systems/` — how a machine, service or tool is set up now
 - `projects/` — project-specific notes and status
 - `knowledge/` — stable facts, configs, how-tos, guides
 - `ideas/` — half-formed thoughts, explorations, things to revisit
 
 Use `[[wikilinks]]` to connect notes. Prefer updating existing notes over creating new ones.
 
-**Keep notes current, not cumulative.** `memory/active.md` and the project notes describe the present state; they are not logs. When you update one, rewrite the section you are touching instead of appending another dated paragraph, remove items that are clearly finished, and keep history only where it earns its place (a short "History" list at the bottom of a project note, or the repo's own changelog). `memory/active.md` stays under about 150 lines: one short entry per project that says where it stands and what is next, then links out (`→ [[projects/x]]`). Nothing tidies these files afterwards. There is no nightly curator any more, so what you leave is what the next session reads. Tidying means moving, not deleting: when an item leaves `memory/active.md`, its outcome gets one dated line in the project note's History list, and decisions with their reasons are never dropped from a project note (compress them, keep the why).
+**Keep notes short and current.** Notes say where things stand now, how they're set up, current decisions with a one-line reason, and what worked or didn't. They are not logs: no dated play-by-play, benchmark tables or test results (those go in a repo's docs). When you touch a note, replace instead of append, and delete what's finished, retired or replaced. A note fits on about one screen. `memory/active.md` holds only what's live right now: two lines per item, then a link (`→ [[projects/x]]`). Notes can be out of date, so check the machine for how something is set up right now.
 
-**Finding the past.** When you need to know what happened or why: first the project note's History list, then the repo's changelog or decision log, then the raw transcripts in `memory/sessions/raw/<date>/` (one Markdown file per session, kept indefinitely; search them with grep by keyword or date). The transcripts are the unedited record, so prefer them over a summary when the two disagree.
+**Finance, banking, tax and health never go in the vault.** Dennis works on those with `pi-private`, and the data lives in the repos. If any of it appears in the vault, tell him: it's a bug or a slip.
 
-**Don't worry about session logging** — conversations are captured automatically by a hook into `memory/sessions/raw/` and kept as the unedited record. Nothing summarises them, so anything durable has to be written as a proper note during the session.
+**Finding the past.** A note, then the repo's changelog or decision log, then the transcripts in `memory/sessions/raw/<date>/`.
+
+**Session logging** — conversations are captured automatically by a hook and kept for one month. Anything durable has to be written as a proper note during the session.
 
 **Don't write to `journal/`** — that's for Dennis's own reflections.
 
