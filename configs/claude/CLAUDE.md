@@ -52,3 +52,7 @@ When you learn facts, decisions, configs, how-tos, or anything about tools, syst
 Claude Code's built-in memory (`~/.claude/projects/.../memory/`) is fine for behavioral feedback about how Claude should work. But knowledge, references, and project context MUST go to the Extended Mind vault. If in doubt, write to the vault.
 
 **The failure mode to watch for:** writing to Claude Code memory and calling it done. That's not done. The vault is the source of truth.
+
+## Private folder
+
+`~/Projects/agents-private/` holds Dennis's private data, one folder per topic. Only `pi-private` works there. Don't read, list, search or write anything in it, and don't pass anything from it on to the vault, a chat or another tool. If a task seems to need it, stop and ask Dennis. Code that writes there lives in a repo elsewhere; working on that code is fine.
